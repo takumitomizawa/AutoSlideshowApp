@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             if (checkSelfPermission(readImagesPermission) == PackageManager.PERMISSION_GRANTED) {
                 binding.button.isEnabled = false
                 binding.button2.isEnabled = false
-                moveSlideShow()
+
 
                 if (buttonTap){
                     binding.button3.text = getString(R.string.play)
@@ -117,6 +117,7 @@ class MainActivity : AppCompatActivity() {
                 }else{
                     binding.button3.text = getString(R.string.stop)
                     buttonTap = true
+                    timer = null
                     moveSlideShow()
                 }
             } else {
@@ -126,6 +127,7 @@ class MainActivity : AppCompatActivity() {
                     PERMISSIONS_REQUEST_CODE
                 )
             }
+
         }
 
     }
@@ -148,6 +150,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun moveSlideShow(){
+
         if (timer == null) {
             timer = Timer()
             timer!!.schedule(object : TimerTask() {
